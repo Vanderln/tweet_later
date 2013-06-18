@@ -15,12 +15,11 @@ gem 'activerecord'
 
 gem 'rake'
 
-gem 'shotgun'
-
 gem 'oauth'
 gem 'twitter'
-gem 'rspec'
 
-group :test do
+group :development, :test do
+  gem 'shotgun'
   gem 'faker'
+  gem 'rspec'
 end
