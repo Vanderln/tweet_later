@@ -18,7 +18,7 @@ get '/auth' do
   @access_token = request_token.get_access_token(:oauth_verifier => params[:oauth_verifier])
   # our request token is only valid until we use it to get an access token, so let's delete it from our session
   session.delete(:request_token)
-  # puts @access_token.inspect
+
   screen_name = @access_token.params[:screen_name]
   twitter_user_id = @access_token.params[:user_id]
   oauth_token = @access_token.params[:oauth_token]
