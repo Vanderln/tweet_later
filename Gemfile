@@ -18,6 +18,9 @@ gem 'rake'
 gem 'oauth'
 gem 'twitter'
 
+gem 'sidekiq'
+gem 'redis'
+
 group :development, :test do
   gem 'shotgun'
   gem 'faker'

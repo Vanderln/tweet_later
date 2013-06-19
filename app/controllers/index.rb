@@ -23,9 +23,35 @@ get '/auth' do
   twitter_user_id = @access_token.params[:user_id]
   oauth_token = @access_token.params[:oauth_token]
   oauth_secret = @access_token.params[:oauth_token_secret]
-  @user = User.create(:screen_name => screen_name, :twitter_user_id => twitter_user_id,
-                      :oauth_token => oauth_token, :oauth_secret => oauth_secret )
-  # at this point in the code is where you'll need to create your user account and store the access token
-  puts @user.inspect
-  erb :index
+
+  @user = User.find_or_create_by_screen_name(screen_name)
+  @user.twitter_user_id = twitter_user_id
+  @user.oauth_token = oauth_token
+  @user.oauth_secret = oauth_secret 
+  @user.save
+
+  session[:user_id] = @user.id
+  erb :tweet_something
+end
+
+get '/tweet' do
+  erb :tweet
+end
+
+post '/tweet' do
+  tweet = params[:tweet]
+  @job_id = current_user.tweet(tweet)
+  content_type :json
+  {"jobID" => @job_id }.to_json
+end
+
+get '/logout' do
+  session.clear
+  redirect '/'
+end
+
+get '/status/:job_id' do
+  complete = job_is_complete(params[:job_id])
+  complete.to_s
+
 end
