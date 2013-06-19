@@ -1,6 +1,8 @@
 class TweetWorker
   include Sidekiq::Worker
+  sidekiq_options :retry => false
 
+  
   def perform(tweet_id)
     tweet = Tweet.find(tweet_id)
     user  = tweet.user
