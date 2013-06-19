@@ -10,7 +10,7 @@ require 'rubygems'
 
 require 'uri'
 require 'pathname'
-
+require 'active_support'
 require 'pg'
 require 'active_record'
 require 'logger'

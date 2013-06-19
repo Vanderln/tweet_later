@@ -19,18 +19,22 @@ $(document).ready(function() {
     var data = $(this).serialize();
     var url = $(this).attr('action');
     $(this)[0].reset();
-      $.post(url, data, function(response){
-        var jobID = response.jobID;
-        checker(jobID);
+    $.post(url, data, function(response){
+      var jobID = response.jobID;
+      checker(jobID);
 
-        // console.log(status_response);
-        // if (response === "false"){
-        //   alert('true')
-        //   setTimeout(checker(jobID), 250);
-        //   console.log("checking");
-        // }else{
-        //   alert("sweetness was number 34")
-        // }
+    });
+  });
+
+  $('#tweet-layout-later').on('submit', function(e){
+    e.preventDefault();
+    var data = $(this).serialize();
+    var url = $(this).attr('action');
+    $(this)[0].reset();
+    $.post(url, data, function(response){
+      var jobID = response.jobID;
+      checker(jobID);
+
     });
   });
 });

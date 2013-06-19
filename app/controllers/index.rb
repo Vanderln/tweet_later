@@ -45,6 +45,13 @@ post '/tweet' do
   {"jobID" => @job_id }.to_json
 end
 
+post '/tweet_later' do
+  tweet = params[:tweet]
+  @job_id = current_user.tweet_later(interval.minutes.from_now, tweet)
+  content_type :json
+  {"jobID" => @job_id }.to_json
+end
+
 get '/logout' do
   session.clear
   redirect '/'
