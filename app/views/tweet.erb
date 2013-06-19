@@ -1,5 +1,6 @@
 <div class="container">
   <p> HEY <%=current_user.screen_name%></p>
+  <h1>Tweet Now</h1>
   <p id='tweet'>
     <form id='tweet-layout' name='tweet' action='/tweet' method='post'>
      <h1>Tweet Something:   </h1>
@@ -8,6 +9,7 @@
      <br>
    </form>
  </p>
+ <h1>Tweet X minutes from now</h1>
  <p id='tweet_later'>
     <form id='tweet-layout-later' name='tweet' action='/tweet_later' method='post'>
      <h1>Tweet Something:   </h1>

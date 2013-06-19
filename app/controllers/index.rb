@@ -47,6 +47,11 @@ end
 
 post '/tweet_later' do
   tweet = params[:tweet]
+  if params[:minutes].to_i
+    interval = params[:minutes].to_i
+  else
+    interval = 0
+  end
   @job_id = current_user.tweet_later(interval.minutes.from_now, tweet)
   content_type :json
   {"jobID" => @job_id }.to_json
