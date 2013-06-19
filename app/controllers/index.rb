@@ -41,8 +41,6 @@ end
 post '/tweet' do
   tweet = params[:tweet]
   @job_id = current_user.tweet(tweet)
-  p ">>>>>>>>>>>>>>>>>>"
-  p @job_id.inspect
   content_type :json
   {"jobID" => @job_id }.to_json
 end
@@ -51,19 +49,13 @@ post '/tweet_later' do
 
   tweet = params[:tweet]
   if params[:minutes].to_i >= 1
-    p "hi"
     interval = params[:minutes].to_i
     @job_id = current_user.tweet_later(interval.minutes.from_now, tweet)
-    p ">>>>>>>>>>>>>>>>>>"
-    p @job_id.inspect
   else
-    p "bye"
     @job_id = current_user.tweet(tweet)
-    
   end
-
-  # content_type :json
-  # {"jobID" => @job_id }.to_json
+  content_type :json
+  {"jobID" => @job_id }.to_json
 end
 
 get '/logout' do
