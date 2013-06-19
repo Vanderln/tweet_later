@@ -46,6 +46,8 @@ post '/tweet' do
 end
 
 post '/tweet_later' do
+ p ">>>>>>>>>>>>>>>>>>>>>>>>"
+  p params[:minutes].to_i.inspect
   tweet = params[:tweet]
   if params[:minutes].to_i
     interval = params[:minutes].to_i
